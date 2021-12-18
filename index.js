@@ -2,6 +2,8 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 
+const PORT = 3001;
+
 // Import models
 const Post = require('./src/models/post');
 
@@ -58,10 +60,38 @@ app.get('/posts', function(req, res) {
 })
 
 // Tasks for you
-// 1. Create API to get details of a single Post
-// 2. Create API to update a Post
-// 3. Create API to delete a Post
 
-app.listen(3001, function() {
-  console.log('Server is running at port 3001....')
+// 1. Create API to get details of a single Post
+app.get('/posts/:id', function(req, res) {
+  Post.findById(req.params.id, function(error, post, ) {
+    if(error) 
+      res.status(422).send({error: 'Unable to fetch post!'})
+    else 
+      res.status(200).send(post)
+  })
+})
+
+// 2. Create API to update a Post
+app.put('/posts/:id', function(req, res) {
+  Post.findByIdAndUpdate(req.params.id, req.body, function (error, oldPost){
+    if(error) 
+      res.status(422).send({error: 'Update unsucessful!'})
+    else 
+      res.status(200).send({'beforeUpdate': oldPost})
+  })
+})
+
+// 3. Create API to delete a Post
+app.delete('/posts/:id', function(req, res) {
+  Post.findByIdAndDelete(req.params.id, function(error, post){
+    if(error)
+      res.status(422).send({error: 'Delete unsuccessful!'})
+    else
+      res.status(200).send({'deleted':post})
+  })
+})
+
+
+app.listen(PORT, function() {
+  console.log(`Server is running at http://localhost:${PORT}`);
 })
