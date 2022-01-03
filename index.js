@@ -1,6 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
+const cors = require('cors')
 
 const PORT = 3001;
 
@@ -12,7 +13,7 @@ const app = express()
 
 // Define DB Connection
 const db = mongoose.connect('mongodb://localhost:27017/first-node-api-db')
-
+app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 
