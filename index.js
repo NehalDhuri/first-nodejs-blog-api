@@ -3,7 +3,7 @@ const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const cors = require('cors')
 
-const PORT = 3001;
+const PORT = 3003;
 
 // Import models
 const Post = require('./src/models/post');
@@ -12,7 +12,8 @@ const Post = require('./src/models/post');
 const app = express()
 
 // Define DB Connection
-const db = mongoose.connect('mongodb://localhost:27017/first-node-api-db')
+const db = mongoose.connect('mongodb+srv://nehal:z0QbpkYT7pciWtc7@cluster0.uows6.mongodb.net/first-node-api?retryWrites=true&w=majority')
+
 app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
