@@ -94,6 +94,6 @@ app.delete('/posts/:id', function(req, res) {
 })
 
 
-app.listen(PORT, function() {
-  console.log(`Server is running at http://localhost:${PORT}`);
+app.listen(process.env.PORT || 3003,function(){
+  console.log("Server is running on the port number 8000")
 })
