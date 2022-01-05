@@ -10,7 +10,10 @@ const Post = require('./src/models/post');
 const app = express()
 
 // Define DB Connection
-const db = mongoose.connect('mongodb+srv://nehal:z0QbpkYT7pciWtc7@cluster0.uows6.mongodb.net/first-node-api?retryWrites=true&w=majority')
+const db = mongoose.connect('mongodb+srv://nehal:z0QbpkYT7pciWtc7@cluster0.uows6.mongodb.net/first-node-api?retryWrites=true&w=majority').then(
+  ()=>{console.log("connected")},
+  err =>{console.log("err",err);}
+);
 
 app.use(cors())
 app.use(bodyParser.json())
