@@ -3,8 +3,6 @@ const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const cors = require('cors')
 
-const PORT = 3003;
-
 // Import models
 const Post = require('./src/models/post');
 
